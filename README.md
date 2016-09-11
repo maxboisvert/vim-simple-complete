@@ -21,3 +21,12 @@ After three (3) typed keyword (\K), the completion popup becomes visible. Press 
 With Plug (https://github.com/junegunn/vim-plug) :
 
 `Plug 'maxboisvert/vim-simple-complete'`
+
+## Tips
+
+Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
+
+```
+set complete-=t
+set complete-=i
+```
