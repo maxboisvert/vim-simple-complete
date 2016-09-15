@@ -6,6 +6,7 @@
 "
 "! ##Installation
 "! With Plug (https://github.com/junegunn/vim-plug) :
+"!
 "! `Plug 'maxboisvert/vim-simple-complete'`
 "
 "! ## Tips
