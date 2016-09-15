@@ -1,6 +1,21 @@
-
-" vim-simple-complete
-" maxboisvert.com
+"! # Vim Simple Complete
+"! This is a simple vim plugin that add tab complete and type complete in less then 50 lines of code.
+"
+"! ## Requirements
+"! vim version >= 7.4
+"
+"! ##Installation
+"! With Plug (https://github.com/junegunn/vim-plug) :
+"! `Plug 'maxboisvert/vim-simple-complete'`
+"
+"! ## Tips
+"! Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
+"! ```
+"! set complete-=t
+"! set complete-=i
+"! ```
+"
+"! ##Usage
 
 if exists("g:loaded_vim_simple_complete")
   finish
@@ -13,6 +28,9 @@ fun! Init()
 endfun
 
 fun! TabCompletePlugin()
+    "! ## Tab Complete
+    "! Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
+
     inoremap <expr> <Tab> TabComplete()
 
     fun! TabComplete()
@@ -25,6 +43,9 @@ fun! TabCompletePlugin()
 endfun
 
 fun! TypeCompletePlugin()
+    "! ## Type Complete
+    "! After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
+
     set completeopt=menu,menuone,noinsert,preview
     inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
     autocmd InsertCharPre * call TypeComplete()
@@ -42,4 +63,3 @@ fun! TypeCompletePlugin()
 endfun
 
 call Init()
-
