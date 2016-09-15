@@ -4,7 +4,9 @@ This is a simple vim plugin that add tab complete and type complete in less then
 vim version >= 7.4
 ##Installation
 With Plug (https://github.com/junegunn/vim-plug) :
-`Plug 'maxboisvert/vim-simple-complete'`
+```
+Plug 'maxboisvert/vim-simple-complete'
+```
 ## Tips
 Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
 ```
