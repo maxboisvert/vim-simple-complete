@@ -22,3 +22,7 @@ set complete-=i
 Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
 ## Type Complete
 After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
+
+## License
+
+This software is licensed under the [GPL v3 license][gpl].
