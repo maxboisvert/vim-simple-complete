@@ -10,18 +10,20 @@ With Plug (https://github.com/junegunn/vim-plug) :
 Plug 'maxboisvert/vim-simple-complete'
 ```
 
+## Usage
+
+## Tab Complete
+Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
+
+## Type Complete
+After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
+
 ## Tips
 Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
 ```
 set complete-=t
 set complete-=i
 ```
-
-##Usage
-## Tab Complete
-Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
-## Type Complete
-After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
 
 ## License
 
