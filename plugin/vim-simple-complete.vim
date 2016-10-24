@@ -3,15 +3,15 @@ if exists("g:loaded_vim_simple_complete")
 endif
 let g:loaded_vim_simple_complete = 1
 
-fun! Init()
-    call TypeCompletePlugin()
-    call TabCompletePlugin()
+fun! s:Init()
+    call s:TypeCompletePlugin()
+    call s:TabCompletePlugin()
 endfun
 
-fun! TabCompletePlugin()
-    inoremap <expr> <Tab> TabComplete()
+fun! s:TabCompletePlugin()
+    inoremap <expr> <Tab> <SID>TabComplete()
 
-    fun! TabComplete()
+    fun! s:TabComplete()
         if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
             return "\<C-P>"
         else
@@ -20,12 +20,12 @@ fun! TabCompletePlugin()
     endfun
 endfun
 
-fun! TypeCompletePlugin()
+fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
     imap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-    autocmd InsertCharPre * call TypeComplete()
+    autocmd InsertCharPre * call s:TypeComplete()
 
-    fun! TypeComplete()
+    fun! s:TypeComplete()
         if v:char =~ '\K'
             \ && getline('.')[col('.') - 4] !~ '\K'
             \ && getline('.')[col('.') - 3] =~ '\K'
@@ -37,4 +37,4 @@ fun! TypeCompletePlugin()
     endfun
 endfun
 
-call Init()
+call s:Init()
