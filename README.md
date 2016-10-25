@@ -1,8 +1,7 @@
 # Vim Simple Complete
 This is a simple vim plugin that add tab complete and complete as you type in less then 50 lines of code.
 
-[![asciicast](https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s.png)](https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s)
-
+In action : https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s
 
 ## Requirements
 vim version >= 7.4
