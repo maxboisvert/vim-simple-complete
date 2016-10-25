@@ -1,5 +1,7 @@
 # Vim Simple Complete
-This is a simple vim plugin that add tab complete and type complete in less then 50 lines of code.
+This is a simple vim plugin that add tab complete and complete as you type in less then 50 lines of code.
+
+In action : https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s
 
 ## Requirements
 vim version >= 7.4
@@ -23,6 +25,13 @@ Personally, I don't use included files and tag complete for better performances.
 ```
 set complete-=t
 set complete-=i
+```
+
+## Options
+
+```
+let g:vsc_tab_complete = 1
+let g:vsc_completion_command = "\<C-P>"
 ```
 
 ## License

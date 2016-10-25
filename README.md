@@ -27,6 +27,13 @@ set complete-=t
 set complete-=i
 ```
 
+## Options
+
+```
+let g:vsc_tab_complete = 1
+let g:vsc_completion_command = "\<C-P>"
+```
+
 ## License
 
 Copyright (c) 2016 Maxime Boisvert.
