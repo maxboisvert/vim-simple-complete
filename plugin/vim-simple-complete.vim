@@ -5,6 +5,7 @@ let g:loaded_vim_simple_complete = 1
 
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-P>")
+let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-N>")
 
 fun! Init()
     call TypeCompletePlugin()
@@ -15,11 +16,12 @@ fun! Init()
 endfun
 
 fun! TabCompletePlugin()
-    inoremap <expr> <Tab> TabComplete()
+    inoremap <expr> <Tab> TabComplete(0)
+    inoremap <expr> <S-Tab> TabComplete(1)
 
-    fun! TabComplete()
+    fun! TabComplete(reverse)
         if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
-            return g:vsc_completion_command
+            return a:reverse == 1 ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
         endif

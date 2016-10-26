@@ -15,7 +15,7 @@ Plug 'maxboisvert/vim-simple-complete'
 ## Usage
 
 ## Tab Complete
-Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
+Press Tab to trigger completion. When the completion popup is visible, use Tab/Shift-Tab to rotate selection.
 
 ## Type Complete
 After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
@@ -32,6 +32,7 @@ set complete-=i
 ```
 let g:vsc_tab_complete = 1
 let g:vsc_completion_command = "\<C-P>"
+let g:vsc_reverse_completion_command = "\<C-N>"
 ```
 
 ## License
