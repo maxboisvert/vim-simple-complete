@@ -6,18 +6,18 @@ let g:loaded_vim_simple_complete = 1
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-P>")
 
-fun! Init()
-    call TypeCompletePlugin()
+fun! s:Init()
+    call s:TypeCompletePlugin()
 
     if g:vsc_tab_complete
-        call TabCompletePlugin()
+        call s:TabCompletePlugin()
     endif
 endfun
 
-fun! TabCompletePlugin()
-    inoremap <expr> <Tab> TabComplete()
+fun! s:TabCompletePlugin()
+    inoremap <expr> <Tab> <SID>TabComplete()
 
-    fun! TabComplete()
+    fun! s:TabComplete()
         if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
             return g:vsc_completion_command
         else
@@ -26,12 +26,12 @@ fun! TabCompletePlugin()
     endfun
 endfun
 
-fun! TypeCompletePlugin()
+fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
     imap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-    autocmd InsertCharPre * call TypeComplete()
+    autocmd InsertCharPre * call s:TypeComplete()
 
-    fun! TypeComplete()
+    fun! s:TypeComplete()
         if v:char =~ '\K'
             \ && getline('.')[col('.') - 4] !~ '\K'
             \ && getline('.')[col('.') - 3] =~ '\K'
@@ -43,4 +43,4 @@ fun! TypeCompletePlugin()
     endfun
 endfun
 
-call Init()
+call s:Init()
