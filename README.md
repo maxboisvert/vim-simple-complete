@@ -20,18 +20,18 @@ Press Tab to trigger completion. When the completion popup is visible, use Tab t
 ## Type Complete
 After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
 
-## Tips
-Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
-```
-set complete-=t
-set complete-=i
-```
-
 ## Options
 
 ```
 let g:vsc_tab_complete = 1
 let g:vsc_completion_command = "\<C-P>"
+```
+
+## Tips
+Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
+```
+set complete-=t
+set complete-=i
 ```
 
 ## License
