@@ -22,14 +22,17 @@ After three (3) typed keyword (\K), the completion popup becomes visible. Press 
 
 ## Options
 
-```
+```VimL
+" Enable/Disable tab key completion mapping
 let g:vsc_tab_complete = 1
+
+" Completion command used
 let g:vsc_completion_command = "\<C-P>"
 ```
 
 ## Tips
 Personally, I don't use included files and tag complete for better performances. Add this to your vimrc for these options :
-```
+```VimL
 set complete-=t
 set complete-=i
 ```
