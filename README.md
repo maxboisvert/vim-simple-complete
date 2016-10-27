@@ -8,7 +8,7 @@ vim version >= 7.4
 
 ##Installation
 With Plug (https://github.com/junegunn/vim-plug) :
-```
+```VimL
 Plug 'maxboisvert/vim-simple-complete'
 ```
 
