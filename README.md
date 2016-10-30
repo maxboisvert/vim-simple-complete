@@ -12,6 +12,8 @@ With Plug (https://github.com/junegunn/vim-plug) :
 Plug 'maxboisvert/vim-simple-complete'
 ```
 
+Or use your prefered way.
+
 ## Usage
 
 ## Tab Complete
