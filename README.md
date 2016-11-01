@@ -21,7 +21,7 @@ Or use your prefered way.
 After three (3) typed keyword (\K), the completion popup becomes visible. Press Enter to insert the current selection.
 
 ## Tab Complete
-Press Tab to trigger completion. When the completion popup is visible, use Tab to rotate selection.
+Press Tab to trigger completion. When the completion popup is visible, use Tab/Shift-Tab to rotate selection.
 
 ## Options
 
@@ -31,6 +31,9 @@ let g:vsc_tab_complete = 1
 
 " Completion command used
 let g:vsc_completion_command = "\<C-P>"
+
+" Reverse completion command used
+let g:vsc_reverse_completion_command = "\<C-N>"
 ```
 
 ## Tips
