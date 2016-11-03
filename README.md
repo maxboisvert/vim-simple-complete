@@ -10,7 +10,10 @@ vim version >= 7.4
 ## Installation
 
 ### Pathogen
-`git clone https://github.com/maxboisvert/vim-simple-complete ~/.vim/bundle/vim-simple-complete`
+```
+git clone https://github.com/maxboisvert/vim-simple-complete ~/.vim/bundle/vim-simple-complete
+```
+
 Run `:Helptags` to generate help tags
 
 ### NeoBundle
