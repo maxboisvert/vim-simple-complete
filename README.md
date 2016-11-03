@@ -7,11 +7,24 @@ In action : https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s
 ## Requirements
 vim version >= 7.4
 
-##Installation
-With Plug (https://github.com/junegunn/vim-plug) :
-```VimL
-Plug 'maxboisvert/vim-simple-complete'
-```
+## Installation
+
+### Pathogen
+`git clone https://github.com/maxboisvert/vim-simple-complete ~/.vim/bundle/vim-simple-complete`
+Run `:Helptags` to generate help tags
+
+### NeoBundle
+`NeoBundle 'maxboisvert/vim-simple-complete'`
+
+### Vundle
+`Plugin 'maxboisvert/vim-simple-complete'`
+
+### Plug
+`Plug 'maxboisvert/vim-simple-complete'`
+
+### Manual
+copy plugin in `~/.vim`
+
 
 Or use your prefered way.
 
