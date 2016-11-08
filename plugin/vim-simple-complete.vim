@@ -20,7 +20,9 @@ fun! s:TabCompletePlugin()
     inoremap <expr> <S-Tab> <SID>TabComplete(1)
 
     fun! s:TabComplete(reverse)
-        if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
+        if pumvisible()
+            return a:reverse ? "\<Down>" : "\<Up>"
+        elseif getline('.')[col('.') - 2] =~ '\K'
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
@@ -30,7 +32,6 @@ endfun
 
 fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
-    imap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
     autocmd InsertCharPre * call s:TypeComplete()
 
     fun! s:TypeComplete()
