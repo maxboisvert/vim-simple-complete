@@ -38,7 +38,7 @@ fun! s:TypeCompletePlugin()
         if v:char =~ '\K'
             \ && getline('.')[col('.') - 4] !~ '\K'
             \ && getline('.')[col('.') - 3] =~ '\K'
-            \ && getline('.')[col('.') - 2] =~ '\K' " last typed char
+            \ && getline('.')[col('.') - 2] =~ '\K'
             \ && getline('.')[col('.') - 1] !~ '\K'
 
             call feedkeys(g:vsc_completion_command, 'n')
