@@ -4,6 +4,7 @@ endif
 let g:loaded_vim_simple_complete = 1
 
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
+let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
 let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-P>")
 let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-N>")
 
@@ -35,7 +36,7 @@ fun! s:TypeCompletePlugin()
     autocmd InsertCharPre * call s:TypeComplete()
 
     fun! s:TypeComplete()
-        if v:char =~ '\K'
+        if g:vsc_type_complete && v:char =~ '\K'
             \ && getline('.')[col('.') - 4] !~ '\K'
             \ && getline('.')[col('.') - 3] =~ '\K'
             \ && getline('.')[col('.') - 2] =~ '\K'
