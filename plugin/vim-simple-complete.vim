@@ -9,7 +9,9 @@ let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-P>")
 let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-N>")
 
 fun! s:Init()
-    call s:TypeCompletePlugin()
+    if g:vsc_type_complete
+        call s:TypeCompletePlugin()
+    endif
 
     if g:vsc_tab_complete
         call s:TabCompletePlugin()
