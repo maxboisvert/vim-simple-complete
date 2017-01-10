@@ -28,7 +28,6 @@ Run `:Helptags` to generate help tags
 ### Manual
 copy plugin in `~/.vim`
 
-
 Or use your prefered way.
 
 ## Usage
@@ -45,11 +44,17 @@ Press Tab to trigger completion. When the completion popup is visible, use Tab/S
 " Enable/Disable tab key completion mapping
 let g:vsc_tab_complete = 1
 
+" Enable/Disable As-you-type completion
+let g:vsc_type_complete = 1
+
 " Completion command used
 let g:vsc_completion_command = "\<C-P>"
 
 " Reverse completion command used
 let g:vsc_reverse_completion_command = "\<C-N>"
+
+" Number of character to type to trigger completion
+let g:vsc_type_complete_length = 3
 ```
 
 ## Tips

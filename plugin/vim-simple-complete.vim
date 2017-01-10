@@ -36,17 +36,32 @@ endfun
 
 fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
-    autocmd InsertCharPre * call s:TypeComplete()
+    autocmd InsertCharPre * call s:TypeCompleteWrapper()
+
+    fun! s:TypeCompleteWrapper()
+        if !g:vsc_type_complete || pumvisible()
+            return ''
+        endif
+
+        call s:TypeComplete()
+    endfun
 
     fun! s:TypeComplete()
-        if g:vsc_type_complete && v:char =~ '\K'
-            \ && getline('.')[col('.') - 4] !~ '\K'
-            \ && getline('.')[col('.') - 3] =~ '\K'
-            \ && getline('.')[col('.') - 2] =~ '\K'
-            \ && getline('.')[col('.') - 1] !~ '\K'
+        if v:char !~ '\K'
+            return ''
+        endif
 
-            call feedkeys(g:vsc_completion_command, 'n')
-        end
+        let i = 2
+
+        while i <= g:vsc_type_complete_length
+            if getline('.')[col('.') - i] !~ '\K'
+                return ''
+            endif
+
+            let i += 1
+        endwhile
+
+        call feedkeys(g:vsc_completion_command, 'n')
     endfun
 endfun
 
