@@ -1,6 +1,6 @@
 # Vim Simple Complete
 
-This plugin offers as-you-type keyword completion and tab complete in less than fifty lines of code.
+This plugin offers as-you-type keyword completion and tab complete in less than 100 lines of code.
 
 In action : https://asciinema.org/a/5y5ggl0pseprxopox06a2vt5s
 
