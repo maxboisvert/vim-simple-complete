@@ -21,7 +21,8 @@ fun! s:Init()
 endfun
 
 fun! s:LineCharAt(col)
-    return matchstr(getline('.'), '\%' . a:col . 'c.')
+    return getline('.')[a:col]
+     "return matchstr(getline('.'), '\%' . a:col . 'c.')
 endfun
 
 fun! s:TabCompletePlugin()
