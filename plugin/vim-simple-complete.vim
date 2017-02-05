@@ -1,4 +1,4 @@
-if exists("g:loaded_vim_simple_complete")
+﻿if exists("g:loaded_vim_simple_complete")
   finish
 endif
 let g:loaded_vim_simple_complete = 1
@@ -21,8 +21,14 @@ fun! s:Init()
 endfun
 
 fun! s:LineCharAt(col)
-    return getline('.')[a:col]
-     "return matchstr(getline('.'), '\%' . a:col . 'c.')
+    "return getline('.')[a:col]
+    let match_col = a:col + 1
+
+    if match_col < 0
+        return ''
+    endif
+
+    return matchstr(getline('.'), '\%' . match_col . 'c.')
 endfun
 
 fun! s:TabCompletePlugin()
