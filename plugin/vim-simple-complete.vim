@@ -49,23 +49,22 @@ endfun
 fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
     autocmd InsertCharPre * call s:TypeComplete()
+    autocmd InsertEnter * let g:vsc_typed_length = 0
+    let g:vsc_typed_length = 0
 
     fun! s:TypeComplete()
-        if !g:vsc_type_complete || pumvisible() || v:char !~ g:vsc_pattern
+        if !g:vsc_type_complete || pumvisible()
             return ''
         endif
 
-        let i = 2
+        if v:char !~ g:vsc_pattern
+            let g:vsc_typed_length = 0
+            return ''
+        endif
 
-        while i <= g:vsc_type_complete_length
-            if s:LineCharAt(col('.') - i) !~ g:vsc_pattern
-                return ''
-            endif
+        let g:vsc_typed_length += 1
 
-            let i += 1
-        endwhile
-
-        if s:LineCharAt(col('.') - i) !~ g:vsc_pattern
+        if g:vsc_typed_length == g:vsc_type_complete_length
             call feedkeys(g:vsc_completion_command, 'n')
         endif
     endfun
