@@ -8,7 +8,7 @@ let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command',
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
 let g:vsc_type_complete_length = get(g:, 'vsc_type_complete_length', 3)
-let g:vsc_pattern = get(g:, 'vsc_pattern', '\I')
+let g:vsc_pattern = get(g:, 'vsc_pattern', '\K')
 
 fun! s:Init()
     if g:vsc_type_complete
@@ -20,17 +20,6 @@ fun! s:Init()
     endif
 endfun
 
-fun! s:LineCharAt(col)
-    "return getline('.')[a:col]
-    let match_col = a:col + 1
-
-    if match_col < 0
-        return ''
-    endif
-
-    return matchstr(getline('.'), '\%' . match_col . 'c.')
-endfun
-
 fun! s:TabCompletePlugin()
     inoremap <expr> <Tab> <SID>TabComplete(0)
     inoremap <expr> <S-Tab> <SID>TabComplete(1)
@@ -38,7 +27,7 @@ fun! s:TabCompletePlugin()
     fun! s:TabComplete(reverse)
         if pumvisible()
             return a:reverse ? "\<Down>" : "\<Up>"
-        elseif s:LineCharAt(col('.') - 2) =~ g:vsc_pattern
+        elseif getline('.')[col('.') - 2] =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
