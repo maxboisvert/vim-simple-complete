@@ -38,8 +38,8 @@ endfun
 fun! s:TypeCompletePlugin()
     set completeopt=menu,menuone,noinsert,preview
     autocmd InsertCharPre * call s:TypeComplete()
-    autocmd InsertEnter * let g:vsc_typed_length = 0
-    let g:vsc_typed_length = 0
+    autocmd InsertEnter * let s:vsc_typed_length = 0
+    let s:vsc_typed_length = 0
 
     fun! s:TypeComplete()
         if !g:vsc_type_complete || pumvisible()
@@ -47,13 +47,13 @@ fun! s:TypeCompletePlugin()
         endif
 
         if v:char !~ g:vsc_pattern
-            let g:vsc_typed_length = 0
+            let s:vsc_typed_length = 0
             return ''
         endif
 
-        let g:vsc_typed_length += 1
+        let s:vsc_typed_length += 1
 
-        if g:vsc_typed_length == g:vsc_type_complete_length
+        if s:vsc_typed_length == g:vsc_type_complete_length
             call feedkeys(g:vsc_completion_command, 'n')
         endif
     endfun
