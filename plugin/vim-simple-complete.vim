@@ -20,6 +20,16 @@ fun! s:Init()
     endif
 endfun
 
+fun! s:LineCharAt(col)
+    let match_col = a:col + 1
+
+    if match_col < 0
+        return ''
+    endif
+
+    return matchstr(getline('.'), '\%' . match_col . 'c.')
+endfun
+
 fun! s:TabCompletePlugin()
     inoremap <expr> <Tab> <SID>TabComplete(0)
     inoremap <expr> <S-Tab> <SID>TabComplete(1)
@@ -28,6 +38,7 @@ fun! s:TabCompletePlugin()
         if pumvisible()
             return a:reverse ? "\<Down>" : "\<Up>"
         elseif getline('.')[col('.') - 2] =~ g:vsc_pattern
+        "elseif s:LineCharAt(col('.') - 2) =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
