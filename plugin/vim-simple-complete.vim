@@ -27,7 +27,8 @@ fun! s:TabCompletePlugin()
     fun! s:TabComplete(reverse)
         if pumvisible()
             return a:reverse ? "\<Down>" : "\<Up>"
-        elseif strcharpart(getline('.'), virtcol('.') - 2, 1) =~ g:vsc_pattern
+        "elseif strcharpart(getline('.'), virtcol('.') - 2, 1) =~ g:vsc_pattern
+        elseif matchstr(getline('.'), '.\%' . col('.') . 'c') =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
