@@ -27,7 +27,7 @@ fun! s:TabCompletePlugin()
     fun! s:TabComplete(reverse)
         if pumvisible()
             return a:reverse ? "\<Down>" : "\<Up>"
-        elseif matchstr(getline('.'), '.\%' . col('.') . 'c') =~ g:vsc_pattern
+        elseif s:CurrentChar() =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
@@ -35,23 +35,31 @@ fun! s:TabCompletePlugin()
     endfun
 endfun
 
+fun! s:CurrentChar()
+    return matchstr(getline('.'), '.\%' . col('.') . 'c')
+endfun
+
 fun! s:TypeCompletePlugin()
-    set completeopt=menu,menuone,noinsert,preview
+    set completeopt+=menu
+    set completeopt+=menuone
+    set completeopt+=noinsert
+
     autocmd InsertCharPre * call s:TypeComplete()
     autocmd InsertEnter * let s:vsc_typed_length = 0
+
     let s:vsc_typed_length = 0
 
     fun! s:TypeComplete()
-        if !g:vsc_type_complete || pumvisible()
-            return ''
-        endif
+        let s:vsc_typed_length += 1
 
         if v:char !~ g:vsc_pattern
             let s:vsc_typed_length = 0
             return ''
         endif
 
-        let s:vsc_typed_length += 1
+        if !g:vsc_type_complete || pumvisible()
+            return ''
+        endif
 
         if s:vsc_typed_length == g:vsc_type_complete_length
             call feedkeys(g:vsc_completion_command, 'n')
