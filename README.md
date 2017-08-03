@@ -33,7 +33,7 @@ Or use your prefered way.
 ## Usage
 
 ## As-you-type completion
-After three (3) typed [keywords (\K)](http://vimdoc.sourceforge.net/htmldoc/insert.html#ins-completion), the completion popup becomes visible. Press Enter to insert the current selection.
+After three (3) typed [keywords (\k)](http://vimdoc.sourceforge.net/htmldoc/insert.html#ins-completion), the completion popup becomes visible. Press Enter to insert the current selection.
 
 ## Tab Complete
 Press Tab to trigger completion. When the completion popup is visible, use Tab/Shift-Tab to rotate selection.

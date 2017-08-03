@@ -8,7 +8,8 @@ let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command',
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
 let g:vsc_type_complete_length = get(g:, 'vsc_type_complete_length', 3)
-let g:vsc_pattern = get(g:, 'vsc_pattern', '\K')
+let g:vsc_pattern = get(g:, 'vsc_pattern', '\k')
+let g:vsc_debug = get(g:, 'vsc_debug', 0)
 
 fun! s:Init()
     if g:vsc_type_complete
@@ -52,8 +53,17 @@ fun! s:TypeCompletePlugin()
     fun! s:TypeComplete()
         let s:vsc_typed_length += 1
 
+        if g:vsc_debug
+            echom 'TypeComplete: char:' . v:char . ' length:' . s:vsc_typed_length
+        endif
+
         if v:char !~ g:vsc_pattern
             let s:vsc_typed_length = 0
+
+            if g:vsc_debug
+                echom 'TypeComplete: reset typed length'
+            endif
+
             return ''
         endif
 
