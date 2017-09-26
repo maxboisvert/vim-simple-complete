@@ -16,7 +16,9 @@ fun! s:TabCompletePlugin()
     inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
     fun! s:TabComplete(reverse)
-        if pumvisible() || s:CurrentChar() =~ g:vsc_pattern
+        if pumvisible()
+            return a:reverse ? "\<Down>" : "\<Up>"
+        elseif s:CurrentChar() =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
