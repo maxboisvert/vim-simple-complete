@@ -9,26 +9,14 @@ let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
 let g:vsc_type_complete_length = get(g:, 'vsc_type_complete_length', 3)
 let g:vsc_pattern = get(g:, 'vsc_pattern', '\k')
-let g:vsc_debug = get(g:, 'vsc_debug', 0)
-
-fun! s:Init()
-    if g:vsc_type_complete
-        call s:TypeCompletePlugin()
-    endif
-
-    if g:vsc_tab_complete
-        call s:TabCompletePlugin()
-    endif
-endfun
 
 fun! s:TabCompletePlugin()
     inoremap <expr> <Tab> <SID>TabComplete(0)
     inoremap <expr> <S-Tab> <SID>TabComplete(1)
+    inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
     fun! s:TabComplete(reverse)
-        if pumvisible()
-            return a:reverse ? "\<Down>" : "\<Up>"
-        elseif s:CurrentChar() =~ g:vsc_pattern
+        if pumvisible() || s:CurrentChar() =~ g:vsc_pattern
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
@@ -44,28 +32,18 @@ fun! s:TypeCompletePlugin()
     set completeopt+=menu
     set completeopt+=menuone
     set completeopt+=noinsert
+    let s:vsc_typed_length = 0
 
     autocmd InsertCharPre * call s:TypeComplete()
     autocmd InsertEnter * let s:vsc_typed_length = 0
 
-    let s:vsc_typed_length = 0
-
     fun! s:TypeComplete()
-        let s:vsc_typed_length += 1
-
-        if g:vsc_debug
-            echom 'TypeComplete: char:' . v:char . ' length:' . s:vsc_typed_length
-        endif
-
         if v:char !~ g:vsc_pattern
             let s:vsc_typed_length = 0
-
-            if g:vsc_debug
-                echom 'TypeComplete: reset typed length'
-            endif
-
             return ''
         endif
+
+        let s:vsc_typed_length += 1
 
         if !g:vsc_type_complete || pumvisible()
             return ''
@@ -77,4 +55,5 @@ fun! s:TypeCompletePlugin()
     endfun
 endfun
 
-call s:Init()
+if g:vsc_type_complete | call s:TypeCompletePlugin() | endif
+if g:vsc_tab_complete  | call s:TabCompletePlugin()  | endif
