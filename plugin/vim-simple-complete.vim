@@ -36,8 +36,11 @@ fun! s:TypeCompletePlugin()
     set completeopt+=noinsert
     let s:vsc_typed_length = 0
 
-    autocmd InsertCharPre * call s:TypeComplete()
-    autocmd InsertEnter * let s:vsc_typed_length = 0
+    augroup TypeCompletePlugin
+        autocmd!
+        autocmd InsertCharPre * noautocmd call s:TypeComplete()
+        autocmd InsertEnter * let s:vsc_typed_length = 0
+    augroup END
 
     fun! s:TypeComplete()
         if v:char !~ g:vsc_pattern
@@ -52,7 +55,7 @@ fun! s:TypeCompletePlugin()
         endif
 
         if s:vsc_typed_length == g:vsc_type_complete_length
-            call feedkeys(g:vsc_completion_command, 'n')
+            call feedkeys(g:vsc_completion_command, 't')
         endif
     endfun
 endfun
