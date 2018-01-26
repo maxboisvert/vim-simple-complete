@@ -35,12 +35,17 @@ fun! s:TypeCompletePlugin()
     set completeopt+=menuone
     set completeopt+=noinsert
     let s:vsc_typed_length = 0
+    imap <silent> <expr> <plug>(TypeCompleteCommand) <sid>TypeCompleteCommand()
 
     augroup TypeCompletePlugin
         autocmd!
         autocmd InsertCharPre * noautocmd call s:TypeComplete()
         autocmd InsertEnter * let s:vsc_typed_length = 0
     augroup END
+
+    fun! s:TypeCompleteCommand()
+        return g:vsc_completion_command
+    endfun
 
     fun! s:TypeComplete()
         if v:char !~ g:vsc_pattern
@@ -55,7 +60,7 @@ fun! s:TypeCompletePlugin()
         endif
 
         if s:vsc_typed_length == g:vsc_type_complete_length
-            call feedkeys(g:vsc_completion_command, 't')
+            call feedkeys("\<plug>(TypeCompleteCommand)", 'i')
         endif
     endfun
 endfun
