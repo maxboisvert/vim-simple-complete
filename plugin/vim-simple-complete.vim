@@ -13,12 +13,9 @@ let g:vsc_pattern = get(g:, 'vsc_pattern', '\k')
 fun! s:TabCompletePlugin()
     inoremap <expr> <Tab> <SID>TabComplete(0)
     inoremap <expr> <S-Tab> <SID>TabComplete(1)
-    inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<C-G>u\<CR>"
 
     fun! s:TabComplete(reverse)
-        if pumvisible()
-            return a:reverse ? "\<Down>" : "\<Up>"
-        elseif s:CurrentChar() =~ g:vsc_pattern
+        if s:CurrentChar() =~ g:vsc_pattern || pumvisible()
             return a:reverse ? g:vsc_reverse_completion_command : g:vsc_completion_command
         else
             return "\<Tab>"
@@ -33,7 +30,7 @@ endfun
 fun! s:TypeCompletePlugin()
     set completeopt+=menu
     set completeopt+=menuone
-    set completeopt+=noinsert
+    set completeopt+=noselect
     let s:vsc_typed_length = 0
     imap <silent> <expr> <plug>(TypeCompleteCommand) <sid>TypeCompleteCommand()
 
@@ -50,13 +47,13 @@ fun! s:TypeCompletePlugin()
     fun! s:TypeComplete()
         if v:char !~ g:vsc_pattern
             let s:vsc_typed_length = 0
-            return ''
+            return
         endif
 
         let s:vsc_typed_length += 1
 
         if !g:vsc_type_complete || pumvisible()
-            return ''
+            return
         endif
 
         if s:vsc_typed_length == g:vsc_type_complete_length
