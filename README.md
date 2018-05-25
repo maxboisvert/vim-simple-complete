@@ -42,4 +42,4 @@ set complete-=i
 
 Copyright (c) 2016 Maxime Boisvert.
 
-This program is distributed under the [VIM LICENSE][http://vimdoc.sourceforge.net/htmldoc/uganda.html#license].
+This program is distributed under the [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license).
