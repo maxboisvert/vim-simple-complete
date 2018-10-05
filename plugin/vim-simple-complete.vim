@@ -3,8 +3,8 @@
 endif
 let g:loaded_vim_simple_complete = 1
 
-let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-P>")
-let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-N>")
+let g:vsc_completion_command = get(g:, 'vsc_completion_command', "\<C-N>")
+let g:vsc_reverse_completion_command = get(g:, 'vsc_reverse_completion_command', "\<C-P>")
 let g:vsc_tab_complete = get(g:, 'vsc_tab_complete', 1)
 let g:vsc_type_complete = get(g:, 'vsc_type_complete', 1)
 let g:vsc_type_complete_length = get(g:, 'vsc_type_complete_length', 3)
@@ -31,6 +31,7 @@ fun! s:TypeCompletePlugin()
     set completeopt+=menu
     set completeopt+=menuone
     set completeopt+=noselect
+    set pumheight=10
     let s:vsc_typed_length = 0
     imap <silent> <expr> <plug>(TypeCompleteCommand) <sid>TypeCompleteCommand()
 
